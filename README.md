@@ -7,7 +7,7 @@ A chess-inspired game on a 5x5 grid with real-time multiplayer capabilities. Pla
 ## Project Structure
 
 ```
-/21BCE1961_SPARSHKandpal2
+/21BCE1961_SparshKandpal2
 ├── /client
 │   ├── index.html       # HTML layout for the game
 │   ├── styles.css       # Styling for the game interface
@@ -24,7 +24,7 @@ A chess-inspired game on a 5x5 grid with real-time multiplayer capabilities. Pla
 
    ```bash
    git clone <repository-url>
-   cd 21BCE1961_SPARSHKandpal2
+   cd 21BCE1961_SparshKandpal2
    ```
 
 2. **Install Dependencies:**
