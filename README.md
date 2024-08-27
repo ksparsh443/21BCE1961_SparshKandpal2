@@ -53,3 +53,10 @@ A chess-inspired game on a 5x5 grid with real-time multiplayer capabilities. Pla
 
 - **Express**: For the server.
 - **ws**: For real-time communication.
+![image](https://github.com/user-attachments/assets/76204832-3d2b-4cd9-acd1-7f45f81520f5)
+
+![image](https://github.com/user-attachments/assets/a960bb41-bdc9-4474-92ac-efb6b95eaaf2)
+![image](https://github.com/user-attachments/assets/f299e2c8-957d-46b4-a7cc-0777c5efe96e)
+![image](https://github.com/user-attachments/assets/dd992103-5895-4b37-b453-5bf748327a56)
+
+
