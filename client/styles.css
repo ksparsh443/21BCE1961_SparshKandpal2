@@ -1,0 +1,275 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    transition: all 0.2s linear !important;
+}
+
+body {
+    background-color: #1e1e1e; /* Dark background for the entire page */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #ffffff; /* White text color */
+}
+
+h1 {
+    margin: 20px 0;
+    font-size: 36px;
+    color: #ffffff; /* White text for the heading */
+}
+
+input {
+    margin-bottom: 20px;
+    padding: 5px;
+    font-size: 1.2rem;
+}
+
+button {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+img {
+    width: 30px;
+}
+
+/* Grid container */
+.container, #cont {
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(5, 80px);
+    gap: 0;
+    justify-content: center;
+    margin: 20px auto;
+    border: 2px solid black;
+    background-color: #2c2c2c; /* Darker background for the grid */
+}
+
+/* Individual boxes on the chessboard */
+.box, .square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    color: #ffffff; /* White text for the pieces */
+}
+
+/* Chessboard styling */
+#chess-board {
+    border: solid 3px black;
+    background: #eee;
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 375px; /* 5x75px squares */
+    height: 375px; /* 5x75px squares */
+}
+
+.square {
+    width: 75px;
+    height: 75px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    display: inline-block;
+    line-height: 75px;
+    pointer-events: all; 
+    background-color: #eee;
+}
+
+.square.white {
+    background: white;
+}
+.dragging {
+    opacity: 0.5; /* Example visual feedback */
+}
+.square.black {
+    background: black;
+}
+
+/* Color the boxes */
+.box:nth-child(odd) {
+    background-color: #3a3a3a; /* Dark grey for odd boxes */
+}
+
+.box:nth-child(even) {
+    background-color: #4a4a4a; /* Slightly lighter grey for even boxes */
+}
+
+/* Highlight selected box */
+.box.selected, .square.piece-selected {
+    background-color: yellow !important;
+}
+
+/* Highlight valid moves */
+.box.highlight, .square.capturable-selected {
+    background-color: red !important;
+}
+
+.square.square-selected {
+    background: orange !important;
+}
+
+/* Chess piece styles */
+.chess-piece i {
+    padding: 1rem;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    max-width: 90%;
+    pointer-events: all; 
+}
+
+.chess-piece i.hero1 {
+    color: rgb(32, 183, 93); /* Hero1 color */
+    border: solid 1px rgb(32, 183, 93);
+}
+
+.chess-piece i.hero2 {
+    color: rgb(255, 0, 0); /* Hero2 color */
+    border: solid 1px rgb(255, 0, 0);
+}
+
+.chess-piece i.hero3 {
+    color: rgb(0, 0, 255); /* Hero3 color */
+    border: solid 1px rgb(0, 0, 255);
+}
+
+.chess-piece i.pawn1 {
+    color: rgb(0, 0, 0); /* Pawn color 1 */
+    border: solid 1px rgb(0, 0, 0);
+}
+
+.chess-piece i.pawn2 {
+    color: rgb(128, 128, 128); /* Pawn color 2 */
+    border: solid 1px rgb(128, 128, 128);
+}
+
+.chess-piece i.pawn3 {
+    color: rgb(255, 255, 255); /* Pawn color 3 */
+    border: solid 1px rgb(255, 255, 255);
+}
+
+/* Chess panel styles */
+.chess-panel {
+    padding: 0.5rem;
+    margin: 1rem auto;
+}
+
+.chess-panel-header {
+    text-align: center;
+}
+
+.chess-panel.white {
+    background: white;
+}
+
+.chess-panel.black {
+    background: black;
+}
+
+.white-text {
+    color: white;
+}
+
+.taken-pieces {
+    padding: 0.5rem;
+}
+
+.chess-panel.white .taken-pieces {
+    border: solid 1px black;
+}
+
+.chess-panel.black .taken-pieces {
+    border: solid 1px white;
+}
+.leaderboard {
+    background-color: #f6e9e8; /* Very light beige for background */
+    border: 2px solid #6f1d1b; /* Deep wine color for border */
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    margin-left: 20px; /* Space between the game board and the leaderboard */
+}
+
+.leaderboard h2 {
+    color: #6f1d1b; /* Deep wine color for heading */
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.leaderboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    color: #6f1d1b; /* Deep wine color for text */
+}
+
+.leaderboard li {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #000000; /* Black color for better readability */
+}
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .chess-piece i {
+        margin-top: 0.5rem;
+        width: 15px;
+        height: 15px;
+        padding: 0.3rem;
+        line-height: 0.5;
+    }
+    .square {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+/* Custom styles for turns */
+.turn-indicator {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #ffffff; /* White text for the turn indicator */
+}
+
+/* Instructions Section */
+.instructions {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #2c2c2c; /* Dark background for instructions */
+    border-radius: 8px;
+    color: #ffffff; /* White text */
+    max-width: 500px;
+    text-align: left;
+}
+
+.instructions h2 {
+    font-size: 24px;
+    color: #ffeb3b; /* Yellow heading for instructions */
+    margin-bottom: 10px;
+}
+
+.instructions ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.instructions li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.instructions li strong {
+    color: #ff9800; /* Orange color for piece names */
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess-Like Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        body {
+            font-family: 'Tilt Warp', cursive;
+            background-color: #b39006; /* Beige background for the page */
+            display: grid;
+            place-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 7rem;
+            color: #010000; /* Deep wine color for the heading */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 120px);
+            grid-template-rows: repeat(5, 120px);
+            gap: 2px;
+            justify-content: center;
+            margin: 20px auto;
+            border: 2px solid #6f1d1b; /* Deep wine color for the border */
+            background-color: #f6e9e8; /* Very light beige for the grid */
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #6f1d1b; /* Deep wine color for the text */
+            background-color: #f2d6d5; /* Light beige with a hint of pink for the boxes */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, border 0.3s ease;
+        }
+
+        .box:nth-child(odd) {
+            background-color: #000d37; /* Slightly darker beige for odd boxes */
+        }
+
+        .box.selected {
+            border: 2px solid #676900; /* Soft pink for selected box border */
+        }
+
+        .box.highlight {
+            background-color: #f8b2b2; /* Soft pink for highlight */
+        }
+
+        .turn-indicator {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #6f1d1b; /* Deep wine color for the turn indicator */
+        }
+
+        .instructions {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            background-color: #f4e1e1; /* Very light pink-beige for instructions background */
+            border-radius: 8px;
+            padding: 20px;
+            color: #6f1d1b; /* Deep wine color for instructions text */
+        }
+
+        .instructions h2 {
+            font-size: 24px;
+            color: #6f1d1b; /* Deep wine color for instructions heading */
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .rules-button {
+            background-color: #e74c3c; /* Red background */
+            color: white; /* White text */
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px; /* Large padding */
+            font-size: 1.5rem; /* Larger font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 20px; /* Margin for spacing */
+        }
+
+        .rules-button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+        .instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        .instructions li strong {
+            color: #f8b2b2; /* Soft pink for piece names */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <marquee>Sparsh Kandpal 21BCE1961</marquee>
+
+<marquee direction="right"></marquee>
+
+<marquee
+  direction="down"
+  width="100"
+  height="100"
+  behavior="alternate"
+  >
+  <marquee behavior="alternate">Advance Chess Game</marquee>
+</marquee>
+    <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboard-list">
+            <li>Player A: 10 Points</li>
+            <li>Player B: 8 Points</li>
+        </ul>
+    </div>
+    <div class="move-tracker">
+        <h2>Move Tracker</h2>
+        <ul id="move-list">
+            <!-- Example move history items -->
+            <li>Move 1: Player A moved Pawn from b2 to b3</li>
+            <li>Move 2: Player B moved Hero1 from c3 to d4</li>
+        </ul>
+    </div>
+    <!-- Team Selection Interface 
+<div id="team-selection">
+    <h2>Select Your Team</h2>
+    <form id="team-form">
+        <label for="playerA">Player A's Team:</label>
+        <select id="playerA" multiple>
+            <option value="P1">Pawn 1</option>
+            <option value="P2">Pawn 2</option>
+            <option value="P3">Pawn 3</option>
+            <option value="H1">Hero 1</option>
+            <option value="H2">Hero 2</option>
+        </select>
+        <label for="playerB">Player B's Team:</label>
+        <select id="playerB" multiple>
+            <option value="P1">Pawn 1</option>
+            <option value="P2">Pawn 2</option>
+            <option value="P3">Pawn 3</option>
+            <option value="H1">Hero 1</option>
+            <option value="H2">Hero 2</option>
+        </select>
+        <button type="button" id="start-game">Start Game</button>
+    </form>
+</div>
+-->
+    <h1>Chess-Like Game</h1>
+    <div class="container">
+        <div id="b01" class="box"></div>
+        <div id="b02" class="box"></div>
+        <div id="b03" class="box"></div>
+        <div id="b04" class="box"></div>
+        <div id="b05" class="box"></div>
+
+        <div id="b11" class="box"></div>
+        <div id="b12" class="box"></div>
+        <div id="b13" class="box"></div>
+        <div id="b14" class="box"></div>
+        <div id="b15" class="box"></div>
+
+        <div id="b21" class="box"></div>
+        <div id="b22" class="box"></div>
+        <div id="b23" class="box"></div>
+        <div id="b24" class="box"></div>
+        <div id="b25" class="box"></div>
+
+        <div id="b31" class="box"></div>
+        <div id="b32" class="box"></div>
+        <div id="b33" class="box"></div>
+        <div id="b34" class="box"></div>
+        <div id="b35" class="box"></div>
+
+        <div id="b41" class="box"></div>
+        <div id="b42" class="box"></div>
+        <div id="b43" class="box"></div>
+        <div id="b44" class="box"></div>
+        <div id="b45" class="box"></div>
+    </div>
+
+    <div class="turn-indicator">Player A's Turn</div>
+   
+    
+   
+    
+    <button class="rules-button" id="toggle-rules">Show Rules</button>
+    
+    <div class="rules" id="rules-section">
+        <h2>Character Types and Movement Rules</h2>
+        <p><strong>1. Pawn (P):</strong></p>
+        <ul>
+            <li><strong>Movement:</strong> Moves one block in any direction—left, right, forward, or backward.</li>
+            <li><strong>Move Commands:</strong> 
+                <ul>
+                    <li><strong>L</strong>: Move Left</li>
+                    <li><strong>R</strong>: Move Right</li>
+                    <li><strong>F</strong>: Move Forward</li>
+                    <li><strong>B</strong>: Move Backward</li>
+                </ul>
+            </li>
+            <li><strong>Example Command:</strong> P1:L (Pawn 1 moves Left)</li>
+        </ul>
+
+        <p><strong>2. Hero1 (H1):</strong></p>
+        <ul>
+            <li><strong>Movement:</strong> Moves two blocks straight in any direction.</li>
+            <li><strong>Special Ability:</strong> Can capture any opponent's character in its path.</li>
+            <li><strong>Move Commands:</strong> 
+                <ul>
+                    <li><strong>L</strong>: Move Left</li>
+                    <li><strong>R</strong>: Move Right</li>
+                    <li><strong>F</strong>: Move Forward</li>
+                    <li><strong>B</strong>: Move Backward</li>
+                </ul>
+            </li>
+            <li><strong>Example Command:</strong> H1:F (Hero1 moves Forward)</li>
+        </ul>
+
+        <p><strong>3. Hero2 (H2):</strong></p>
+        <ul>
+            <li><strong>Movement:</strong> Moves two blocks diagonally in any direction.</li>
+            <li><strong>Special Ability:</strong> Can capture any opponent's character in its path.</li>
+            <li><strong>Move Commands:</strong> 
+                <ul>
+                    <li><strong>FL</strong>: Move Forward-Left</li>
+                    <li><strong>FR</strong>: Move Forward-Right</li>
+                    <li><strong>BL</strong>: Move Backward-Left</li>
+                    <li><strong>BR</strong>: Move Backward-Right</li>
+                </ul>
+            </li>
+            <li><strong>Example Command:</strong> H2:FL (Hero2 moves Forward-Left)</li>
+        </ul>
+
+        <p><strong>Note:</strong> All moves are relative to the player’s perspective.</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('toggle-rules').addEventListener('click', function() {
+            var rulesSection = document.getElementById('rules-section');
+            if (rulesSection.style.display === 'none' || rulesSection.style.display === '') {
+                rulesSection.style.display = 'block';
+                this.textContent = 'Hide Rules';
+            } else {
+                rulesSection.style.display = 'none';
+                this.textContent = 'Show Rules';
+            }
+        });
+    </script>
+    <script src="chess.js"></script>
+</body>
+</html>
